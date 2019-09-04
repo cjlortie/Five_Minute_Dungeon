@@ -30,6 +30,20 @@ data
 ### Viz  
 ```{r, viz, warning=FALSE, message=FALSE}
 ggplot(data, aes(players, time)) +
+  geom_point(size = 4) +
+  xlim(c(2,5))
+
+ggplot(data, aes(time, joy)) +
   geom_point(size = 4)
 
 ```
+
+### Models
+```{r, models, warning=FALSE, message=FALSE}
+t.test(data$time, mu = 300)
+
+```
+
+### Interpretations  
+1. Larger teams are not necessarily more effective.  
+2. Time and joy not related but might be better to test won-lost as response.  
