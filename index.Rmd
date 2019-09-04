@@ -22,7 +22,7 @@ Weekly experiments and data collected by teams.
 ```{r, data, warning=FALSE, message=FALSE}
 #install.packages("tidyverse") #only need to do this once then mute it with #
 library(tidyverse)
-data <- read_csv(url("http://bit.ly/5MD_DOWNLOAD"))
+data <- read_csv(url("http://bit.ly/5MD_DOWNLOAD")) #read from web for updates but can load locally too
 data
 
 ```
