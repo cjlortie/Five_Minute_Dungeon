@@ -1,0 +1,35 @@
+---
+title: ""
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+<br>
+![](./5MD.jpg) 
+
+
+
+
+
+## Five Minute Dungeon Experiments  
+A set of code, experimentation, and data to explore the power of teams, design thinking, and statistics in R.  
+
+### Data  
+Weekly experiments and data collected by teams.  
+
+```{r, data, warning=FALSE, message=FALSE}
+#install.packages("tidyverse") #only need to do this once then mute it with #
+library(tidyverse)
+data <- read_csv(url("http://bit.ly/5MD_DOWNLOAD"))
+data
+
+```
+
+### Viz  
+```{r, viz, warning=FALSE, message=FALSE}
+ggplot(data, aes(players, time)) +
+  geom_point(size = 4)
+
+```
