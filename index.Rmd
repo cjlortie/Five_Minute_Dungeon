@@ -22,7 +22,7 @@ Weekly experiments and data collected by teams.
 ```{r, data, warning=FALSE, message=FALSE}
 #install.packages("tidyverse") #only need to do this once then mute it with #
 library(tidyverse)
-data <- read_csv(url("http://bit.ly/5MD_DOWNLOAD")) #read from web for updates but can load locally too
+data <- read_csv(url("http://bit.ly/5MD_DOWNLOAD_2")) #read from web for updates but can load locally too
 data
 
 ```
@@ -32,10 +32,11 @@ data
 ggplot(data, aes(players, time)) +
   geom_point(size = 4) +
   xlim(c(2,5)) +
-  geom_line(method = lm)
+  geom_smooth(method = lm)
 
 ggplot(data, aes(time, joy)) +
-  geom_point(size = 4)
+  geom_point(size = 4) +
+   geom_smooth(method = lm)
 
 ```
 
