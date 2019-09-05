@@ -31,7 +31,8 @@ data
 ```{r, viz, warning=FALSE, message=FALSE}
 ggplot(data, aes(players, time)) +
   geom_point(size = 4) +
-  xlim(c(2,5))
+  xlim(c(2,5)) +
+  geom_line(method = lm)
 
 ggplot(data, aes(time, joy)) +
   geom_point(size = 4)
