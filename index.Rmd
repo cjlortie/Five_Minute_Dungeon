@@ -42,7 +42,7 @@ ggplot(data, aes(time, joy)) +
 
 ### Models
 ```{r, models, warning=FALSE, message=FALSE}
-t.test(data$time, mu = 300)
+t.test(data$time, mu = 0)
 
 ```
 
