@@ -16,6 +16,8 @@ knitr::opts_chunk$set(echo = TRUE)
 ## Five Minute Dungeon Experiments  
 A set of code, experimentation, and data to explore the power of teams, design thinking, and statistics in R.  
 
+The purpose is to explore data over time, reproducibility in science, and replication. So many fun questions pop from replaying this game even a few times in a row with an experimental mindset.  
+
 ### Data  
 Weekly experiments and data collected by teams.  
 
