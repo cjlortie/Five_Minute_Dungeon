@@ -24,13 +24,15 @@ Weekly experiments and data collected by teams.
 ```{r, data, warning=FALSE, message=FALSE}
 #install.packages("tidyverse") #only need to do this once then mute it with #
 library(tidyverse)
-data <- read_csv(url("http://bit.ly/5MD_DOWNLOAD_2")) #read from web for updates
-data <- read_csv("data/5MD.csv")
+data <- read_csv(url("https://ndownloader.figshare.com/files/17591273")) #read from web for updates
+#data <- read_csv("data/5MD.csv")
 
 #transform data and tidy
 #rename time to remaining so it is more clear
 data <- data %>%
   rename(time_remaining = time)
+
+
 
 #BIOL3250 suggestion to test number of cards in play
 #2 players = 5 each from rules so total = 10
@@ -47,13 +49,11 @@ data <- data %>%
 #### Viz  
 ```{r, viz, warning=FALSE, message=FALSE}
 #explore distribution in main measure
-ggplot(data, aes(time_remaining)) +
-  geom_histogram(binwidth = 40)
+ggplot(data, aes(time_remaining, fill = class)) +
+  geom_histogram(binwidth = 40) +
+  scale_fill_brewer(palette = "Set1")
 
-ggplot(data, aes(time_remaining)) +
-  geom_dotplot(binwidth = 10)
-
-#explore relationships
+#explore continuous variation
 ggplot(data, aes(players, time_remaining)) +
   geom_point(size = 2, aes(color = class)) +
   xlim(c(2,5)) +
@@ -70,10 +70,15 @@ ggplot(data, aes(time_remaining, joy)) +
    geom_smooth(method = lm) +
   scale_color_brewer(palette = "Set1")
 
+#explore groups
+ggplot(data, aes(class, time_remaining)) +
+  geom_boxplot()
+
 ```
 
 #### Models
 ```{r, models, warning=FALSE, message=FALSE}
+#test of whether net difference in gaming is a win across both classes
 t.test(data$time_remaining, mu = 0)
 
 ```
