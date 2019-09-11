@@ -81,6 +81,13 @@ ggplot(data, aes(class, time_remaining)) +
 #test of whether net difference in gaming is a win across both classes
 t.test(data$time_remaining, mu = 0)
 
+#correlations/regressions
+
+#groups
+m1 <- glm(time_remaining~players, data = data)
+summary(m1)
+#plot(m1)
+
 ```
 
 #### Interpretations  

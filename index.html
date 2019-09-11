@@ -426,7 +426,8 @@ ggplot(data, aes(class, time_remaining)) +
 </div>
 <div id="models" class="section level4">
 <h4>Models</h4>
-<pre class="r"><code>t.test(data$time_remaining, mu = 0)</code></pre>
+<pre class="r"><code>#test of whether net difference in gaming is a win across both classes
+t.test(data$time_remaining, mu = 0)</code></pre>
 <pre><code>## 
 ##  One Sample t-test
 ## 
@@ -438,6 +439,32 @@ ggplot(data, aes(class, time_remaining)) +
 ## sample estimates:
 ## mean of x 
 ##  62.33333</code></pre>
+<pre class="r"><code>#correlations/regressions
+
+#groups
+m1 &lt;- glm(time_remaining~players, data = data)
+summary(m1)</code></pre>
+<pre><code>## 
+## Call:
+## glm(formula = time_remaining ~ players, data = data)
+## 
+## Deviance Residuals: 
+##    Min      1Q  Median      3Q     Max  
+## -61.90  -47.45    6.10   24.30  101.50  
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)
+## (Intercept)    26.30      59.33   0.443    0.667
+## players         9.40      14.99   0.627    0.545
+## 
+## (Dispersion parameter for gaussian family taken to be 2621.18)
+## 
+##     Null deviance: 27243  on 11  degrees of freedom
+## Residual deviance: 26212  on 10  degrees of freedom
+## AIC: 132.32
+## 
+## Number of Fisher Scoring iterations: 2</code></pre>
+<pre class="r"><code>#plot(m1)</code></pre>
 </div>
 <div id="interpretations" class="section level4">
 <h4>Interpretations</h4>
