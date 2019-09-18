@@ -42,37 +42,41 @@ data <- data %>%
 
 data <- data %>%
   mutate(time_to_complete = 300 - time_remaining) %>%
-  mutate(total_cards = case_when(players == 2 ~ 10, players == 3 ~ 12, players == 4 ~ 12, players == 5 ~ 15, players == 6 ~ 18))
+  mutate(total_cards = case_when(players == 2 ~ 10, players == 3 ~ 12, players == 4 ~ 12, players == 5 ~ 15, players == 6 ~ 18)) %>%
+  mutate(winning = case_when(outcome == "won" ~ 1, outcome == "lost" ~ 0))
 
 ```
 
 #### Viz  
 ```{r, viz, warning=FALSE, message=FALSE}
-#explore distribution in main measure
-ggplot(data, aes(time_remaining, fill = class)) +
-  geom_histogram(binwidth = 40) +
-  scale_fill_brewer(palette = "Set1")
+#explore groups
+ggplot(data, aes(class, time_remaining)) +
+  geom_boxplot()
+
+ggplot(data, aes(class, time_remaining)) +
+  geom_violin() +
+  geom_jitter()
+
+ggplot(data, aes(class, winning)) +
+  geom_col()
+
 
 #explore continuous variation
-ggplot(data, aes(players, time_remaining)) +
-  geom_point(size = 2, aes(color = class)) +
+ggplot(data, aes(players, time_remaining, color = class)) +
+  geom_point(size = 2) +
   xlim(c(2,5)) +
   geom_smooth(method = lm) +
   scale_color_brewer(palette = "Set1")
 
-ggplot(data, aes(total_cards, time_remaining)) +
-  geom_point(size = 2,  aes(color = class)) +
+ggplot(data, aes(total_cards, time_remaining, color = class)) +
+  geom_point(size = 2) +
    geom_smooth(method = lm) +
   scale_color_brewer(palette = "Set1")
 
-ggplot(data, aes(time_remaining, joy)) +
-  geom_point(size = 2,  aes(color = class)) +
+ggplot(data, aes(time_remaining, joy, color = class)) +
+  geom_point(size = 2) +
    geom_smooth(method = lm) +
   scale_color_brewer(palette = "Set1")
-
-#explore groups
-ggplot(data, aes(class, time_remaining)) +
-  geom_boxplot()
 
 ```
 
@@ -87,6 +91,17 @@ t.test(data$time_remaining, mu = 0)
 m1 <- glm(time_remaining~players, data = data)
 summary(m1)
 #plot(m1)
+anova(m1, test="Chisq")
+
+m2 <- glm(time_remaining~players*class, data = data)
+summary(m2)
+anova(m2, test="Chisq")
+
+m3 <- glm(winning~players, data = data)
+summary(m3)
+anova(m3, test="Chisq")
+
+cor.test(data$players, data$time_remaining)
 
 ```
 
