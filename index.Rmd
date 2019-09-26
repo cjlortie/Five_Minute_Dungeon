@@ -20,7 +20,7 @@ Weekly experiments and data collected by teams.
 ```{r, data, warning=FALSE, message=FALSE}
 #install.packages("tidyverse") #only need to do this once then mute it with #
 library(tidyverse)
-data <- read_csv(url("https://ndownloader.figshare.com/files/17727320")) #read from web for updates
+data <- read_csv(url("https://ndownloader.figshare.com/files/17813387")) #read from web for updates
 #data <- read_csv("data/5MD.csv")
 
 #transform data and tidy
