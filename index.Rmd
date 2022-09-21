@@ -22,6 +22,8 @@ Weekly experiments and data collected by teams.
 library(tidyverse)
 #data <- read_csv(url("https://ndownloader.figshare.com/files/17813387")) #read from web for updates
 data <- read_csv("data/5MD_2022.csv")
+data.2 <- read_csv("data/5MD_2022_2.csv") %>% 
+  mutate(winning = case_when(outcome == "won" ~ 1, outcome == "lost" ~ 0))
 
 #transform data and tidy
 #rename time to remaining so it is more clear
@@ -62,6 +64,9 @@ ggplot(data, aes(time_remaining, joy)) +
   geom_point(size = 2) +
    geom_smooth(method = lm) +
   scale_color_brewer(palette = "Set1")
+
+ggplot(data.2, aes(strategy, winning)) +
+  geom_col()
 
 ```
 

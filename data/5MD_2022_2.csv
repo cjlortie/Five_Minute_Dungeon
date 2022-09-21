@@ -1,0 +1,5 @@
+class,rep,date,boss,players,strategy,outcome,time,joy
+BIOL3250,1,sept 21,grim reaper,4,aggressive,won,11,5
+BIOL3250,1,sept 21,grim reaper,5,aggressive,lost,0,2
+BIOL3250,1,sept 21,grim reaper,4,conservative,lost,0,5
+BIOL3250,1,sept 21,grim reaper,4,conservative,lost,0,3
