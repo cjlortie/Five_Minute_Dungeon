@@ -65,8 +65,10 @@ ggplot(data, aes(time_remaining, joy)) +
    geom_smooth(method = lm) +
   scale_color_brewer(palette = "Set1")
 
-ggplot(data.2, aes(strategy, winning)) +
-  geom_col()
+ggplot(data.2, aes(strategy, winning, fill = as.character(rep))) +
+  geom_col() +
+  scale_fill_brewer(palette = "Set1") +
+  labs(fill = "week or rep")
 
 ```
 
